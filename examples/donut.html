@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KineticJS Learning</title>
+  <script src="/src/js/vendor/kinetic.min.js"></script>
+</head>
+<body>
+  <div id="container"></div>
+  <div id="container2"></div>
+</body>
+<script src="/src/js/stage.js"></script>
+<script src="/src/js/piechart.js"></script>
+<script>
+  var stage = new Stage();
+  stage.setContainer('container');
+  stage.setDimensions(500, 300);
+
+  var values = [];
+  var labels = [ 'BJP', 'Congress', 'JDS', 'AAP', 'BSP' ]
+  var colors = [ '#27577D', '#01B7C2', '#15D7E0', '#FFB351', '#A1C5AB' ];
+  for(var i=0; i<5; i++) {
+    values.push(Math.ceil(Math.random() * 100));
+  }
+  var donutChart = new PieChart({
+    labels: labels,
+    values: values,
+    colors: colors,
+    type: 'donut'
+  })
+
+  stage.add(donutChart);
+</script>
+</html>

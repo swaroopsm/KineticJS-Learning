@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KineticJS Learning</title>
+  <script src="/src/js/vendor/kinetic.min.js"></script>
+</head>
+<body>
+  <div id="container"></div>
+  <div id="container2"></div>
+</body>
+<script src="/src/js/stage.js"></script>
+<script src="/src/js/piechart.js"></script>
+<script>
+  var stage = new Stage();
+  stage.setContainer('container');
+  stage.setDimensions(400, 300);
+
+  var values = [ 9.4, 58.4, 25, 4, 1.8 ];
+  var labels = [ 'Internet Explorer', 'Google Chrome', 'Mozilla Firefox', 'Apple Safari', 'Opera' ];
+  var colors = [ '#27577D', '#01B7C2', '#15D7E0', '#FFB351', '#A1C5AB' ];
+  var pieChart = new PieChart({
+    labels: labels,
+    values: values,
+    colors: colors,
+    type: 'pie'
+  })
+
+  stage.add(pieChart);
+</script>
+</html>
