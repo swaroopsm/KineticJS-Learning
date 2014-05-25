@@ -15,9 +15,10 @@ var PieChart = function(_config) {
       shape,
       label,
       centerX = 0,
-      centerY = 0;
+      centerY = 0,
+      tooltip = null;
 
-  self.draw = function(_stage) {
+  self.draw = function(_stage, _layer) {
     stage = _stage;
     radius = calculateRadius();
     centerX = stage.width() / 2;
@@ -33,7 +34,8 @@ var PieChart = function(_config) {
           angle: calculateAngle(i),
           rotation: calculateRotation(i),
           radius: radius,
-          fill: color
+          fill: color,
+          label: labels[i]
         });
       }
       else {
@@ -41,11 +43,12 @@ var PieChart = function(_config) {
           color: color
         });
       }
-      label = drawLabel(i);
       components.push(shape);
-      components.push(label);
     }
-    
+
+    tooltip = new ToolTip();
+    stage.add(tooltip.getLayer());
+
     return self;
   };
 
@@ -105,6 +108,14 @@ var PieChart = function(_config) {
       fill: options.color
     });
 
+    arcShape.on('mousemove', function(e) {
+      tooltip.show(e.x, e.y, labels[index]);
+    });
+
+    arcShape.on('mouseout', function() {
+      tooltip.hide();
+    });
+
     return arcShape;
   }
 
@@ -118,6 +129,14 @@ var PieChart = function(_config) {
       stroke: options.stroke,
       strokeWidth: options.strokeWidth,
       rotation: options.rotation
+    });
+
+    wedge.on('mousemove', function(e) {
+      tooltip.show(e.x, e.y, options.label);
+    });
+
+    wedge.on('mouseout', function() {
+      tooltip.hide();
     });
 
     return wedge;
