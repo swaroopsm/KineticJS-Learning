@@ -35,7 +35,7 @@ var PieChart = function(_config) {
           rotation: calculateRotation(i),
           radius: radius,
           fill: color,
-          label: labels[i]
+          index: i
         });
       }
       else {
@@ -109,7 +109,7 @@ var PieChart = function(_config) {
     });
 
     arcShape.on('mousemove', function(e) {
-      tooltip.show(e.x, e.y, labels[index]);
+      tooltip.show(e.x, e.y, getLabel(index));
     });
 
     arcShape.on('mouseout', function() {
@@ -117,7 +117,7 @@ var PieChart = function(_config) {
     });
 
     return arcShape;
-  }
+  };
 
   var drawWedge = function(options) {
     var wedge = new Kinetic.Wedge({
@@ -132,7 +132,7 @@ var PieChart = function(_config) {
     });
 
     wedge.on('mousemove', function(e) {
-      tooltip.show(e.x, e.y, options.label);
+      tooltip.show(e.x, e.y, getLabel(options.index));
     });
 
     wedge.on('mouseout', function() {
@@ -142,17 +142,17 @@ var PieChart = function(_config) {
     return wedge;
   };
 
+  var getLabel = function(index) {
+    return labels[index] + " - " + calculatePercentage(index) + "%";
+  };
+
+  var calculatePercentage = function(index) {
+    return +parseFloat( values[index] / getTotal(values) * 100 ).toFixed(2);
+  };
+
   var calculateRadius = function() {
     var min = Math.min(stage.width(), stage.height());
     return min / 2 - HEIGHT_ADJUST_FACTOR;
-  };
-
-  var calculateXCord = function(index) {
-    return ( centerX + ( radius * Math.cos(calculateRotation(index) * Math.PI / 180) ) );
-  };
-
-  var calculateYCord = function(index) {
-    return ( centerY + ( radius * Math.sin(calculateRotation(index) * Math.PI / 180) ) );
   };
 
   return self;
