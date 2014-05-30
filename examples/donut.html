@@ -9,13 +9,14 @@
   <div id="container"></div>
   <div id="container2"></div>
 </body>
-<script src="/KineticJS-Learning/src/js/stage.js"></script>
+<script src="/KineticJS-Learning/src/js/surface.js"></script>
 <script src="/KineticJS-Learning/src/js/tooltip.js"></script>
-<script src="/KineticJS-Learning/src/js/piechart.js"></script>
+<script src="/KineticJS-Learning/src/js/circlechart.js"></script>
+<script src="/KineticJS-Learning/src/js/donutchart.js"></script>
 <script>
-  var stage = new Stage();
-  stage.setContainer('container');
-  stage.setDimensions(500, 300);
+  // var stage = new Stage();
+  // stage.setContainer('container');
+  // stage.setDimensions(500, 300);
 
   var values = [];
   var labels = [ 'BJP', 'Congress', 'JDS', 'AAP', 'BSP' ]
@@ -23,13 +24,17 @@
   for(var i=0; i<5; i++) {
     values.push(Math.ceil(Math.random() * 100));
   }
-  var donutChart = new PieChart({
+  var donutChart = new DonutChart({
     labels: labels,
     values: values,
     colors: colors,
-    type: 'donut'
-  })
+    surface: {
+      container: 'container',
+      width: 500,
+      height: 300
+    }
+  });
 
-  stage.add(donutChart);
+  donutChart.draw();
 </script>
 </html>
