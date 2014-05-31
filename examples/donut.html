@@ -14,6 +14,10 @@
 <body>
   <div id="d1" class="container"></div>
   <div id="d2" class="container"></div>
+  <div id="d3" class="container"></div>
+  <div id="d4" class="container"></div>
+  <div id="d5" class="container"></div>
+  <div id="d6" class="container"></div>
 </body>
 <script src="/KineticJS-Learning/src/js/surface.js"></script>
 <script src="/KineticJS-Learning/src/js/tooltip.js"></script>
@@ -33,7 +37,7 @@
 
     return values;
   }
-  var donutChart = new DonutChart({
+  var d1 = new DonutChart({
     labels: labels,
     values: getValues(),
     colors: randomColor({
@@ -48,7 +52,7 @@
     }
   });
 
-  var donutChart2 = new DonutChart({
+  var d2 = new DonutChart({
     labels: labels,
     values: getValues(),
     colors: randomColor({
@@ -63,7 +67,74 @@
     }
   });
 
-  donutChart.render();
-  donutChart2.render();
+  var d3 = new DonutChart({
+    labels: labels,
+    values: getValues(),
+    colors: randomColor({
+      hue: 'orange',
+      count: 5,
+      luminosity: 'light'
+    }),
+    surface: {
+      container: 'd3',
+      width: 400,
+      height: 300
+    }
+  });
+
+  var d4 = new DonutChart({
+    labels: labels,
+    values: getValues(),
+    type: 'semi',
+    colors: randomColor({
+      hue: 'green',
+      count: 5,
+      luminosity: 'light'
+    }),
+    surface: {
+      container: 'd4',
+      width: 400,
+      height: 300
+    }
+  });
+
+  var d5 = new DonutChart({
+    labels: labels,
+    values: getValues(),
+    type: 'semi',
+    colors: randomColor({
+      hue: 'blue',
+      count: 5,
+      luminosity: 'light'
+    }),
+    surface: {
+      container: 'd5',
+      width: 400,
+      height: 300
+    }
+  });
+
+  var d6 = new DonutChart({
+    labels: labels,
+    values: getValues(),
+    type: 'semi',
+    colors: randomColor({
+      hue: 'orange',
+      count: 5,
+      luminosity: 'light'
+    }),
+    surface: {
+      container: 'd6',
+      width: 400,
+      height: 300
+    }
+  });
+
+  d1.render();
+  d2.render();
+  d3.render();
+  d4.render();
+  d5.render();
+  d6.render();
 </script>
 </html>
