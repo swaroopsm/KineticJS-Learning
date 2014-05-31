@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>KineticJS Learning</title>
+  <style>
+    .container {
+      display: inline-block;
+    }
+  </style>
   <script src="/KineticJS-Learning/src/js/vendor/kinetic.min.js"></script>
+  <script src="/KineticJS-Learning/src/js/vendor/randomColor.js"></script>
 </head>
 <body>
-  <div id="container"></div>
-  <div id="containe"></div>
+  <div id="p1" class="container"></div>
+  <div id="p2" class="container"></div>
 </body>
 <script src="/KineticJS-Learning/src/js/surface.js"></script>
 <script src="/KineticJS-Learning/src/js/circlechart.js"></script>
@@ -19,23 +25,31 @@
   var pieChart = new PieChart({
     labels: labels,
     values: values,
-    colors: colors,
+    colors: randomColor({
+      hue: 'green',
+      count: 5,
+      luminosity: 'light'
+    }),
     surface: {
       id: 1,
-      container: 'container',
-      width: 300,
-      height: 200
+      container: 'p1',
+      width: 400,
+      height: 300
     }
   });
   var pieChart2 = new PieChart({
     labels: labels,
     values: values,
-    colors: colors,
+    colors: randomColor({
+      hue: 'blue',
+      count: 5,
+      luminosity: 'light'
+    }),
     surface: {
       id: 2,
-      container: 'containe',
-      width: 200,
-      height: 200
+      container: 'p2',
+      width: 400,
+      height: 300
     }
   });
 
