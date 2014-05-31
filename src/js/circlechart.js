@@ -45,7 +45,7 @@ var CircleChart = function(_config) {
   };
 
   self.isFull = function() {
-    return (config.type === 'full');
+    return !(self.isSemi());
   };
 
   self.isSemi = function() {
@@ -89,10 +89,16 @@ var CircleChart = function(_config) {
 
   self.render = function() {
     var layer = surface.createLayer();
+    if(self.isSemi()) {
+      self.setTotalAngle(180);
+      self.setStartRotationAngle(180);
+    } 
+    self.draw();
+
     for(var i=0; i<shapes.length; i++) {
       layer.add(shapes[i]);
     }
-    surface.add(layer);
+    surface.stage.add(layer);
   };
 
   var getTotal = function() {

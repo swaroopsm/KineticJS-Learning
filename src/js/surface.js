@@ -2,7 +2,7 @@ function Surface(_config) {
 
   var self = this,
       config = _config,
-      container = config.container ? config.container : '',
+      container = config.container,
       width = config.width ? config.width : 0,
       height = config.height ? config.height : 0
       layer = null,
@@ -10,9 +10,9 @@ function Surface(_config) {
       components = null,
       stage = null;
 
-  self.getStage = function() {
-    return stage;
-  };
+  self.id = config.id;
+
+  self.stage = stage;
 
   self.width = function() {
     return stage.width();
@@ -28,13 +28,13 @@ function Surface(_config) {
 
   self.createLayer = function() {
     layer = new Kinetic.Layer();
-    layers.push(layer);
+    // layers.push(layer);
 
     return layer;
   };
 
   var init = function() {
-    createStage();
+    self.stage = createStage();
   };
 
   var createStage = function() {
@@ -43,6 +43,8 @@ function Surface(_config) {
         width: width,
         height: height
     });
+
+    return stage;
   };
 
   init();

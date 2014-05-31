@@ -3,38 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <title>KineticJS Learning</title>
+  <style>
+    .container {
+      display: inline-block;
+    }
+  </style>
   <script src="/KineticJS-Learning/src/js/vendor/kinetic.min.js"></script>
+  <script src="/KineticJS-Learning/src/js/vendor/randomColor.js"></script>
 </head>
 <body>
-  <div id="container"></div>
-  <div id="container2"></div>
+  <div id="d1" class="container"></div>
+  <div id="d2" class="container"></div>
 </body>
 <script src="/KineticJS-Learning/src/js/surface.js"></script>
 <script src="/KineticJS-Learning/src/js/tooltip.js"></script>
 <script src="/KineticJS-Learning/src/js/circlechart.js"></script>
 <script src="/KineticJS-Learning/src/js/donutchart.js"></script>
 <script>
-  // var stage = new Stage();
-  // stage.setContainer('container');
-  // stage.setDimensions(500, 300);
 
   var values = [];
   var labels = [ 'BJP', 'Congress', 'JDS', 'AAP', 'BSP' ]
   var colors = [ '#27577D', '#01B7C2', '#15D7E0', '#FFB351', '#A1C5AB' ];
-  for(var i=0; i<5; i++) {
-    values.push(Math.ceil(Math.random() * 100));
+
+  var getValues = function() {
+    values = [];
+    for(var i=0; i<5; i++) {
+      values.push(Math.ceil(Math.random() * 100));
+    }
+
+    return values;
   }
   var donutChart = new DonutChart({
     labels: labels,
-    values: values,
-    colors: colors,
+    values: getValues(),
+    colors: randomColor({
+      hue: 'green',
+      count: 5,
+      luminosity: 'light'
+    }),
     surface: {
-      container: 'container',
-      width: 500,
+      container: 'd1',
+      width: 400,
       height: 300
     }
   });
 
-  donutChart.draw();
+  var donutChart2 = new DonutChart({
+    labels: labels,
+    values: getValues(),
+    colors: randomColor({
+      hue: 'blue',
+      count: 5,
+      luminosity: 'light'
+    }),
+    surface: {
+      container: 'd2',
+      width: 400,
+      height: 300
+    }
+  });
+
+  donutChart.render();
+  donutChart2.render();
 </script>
 </html>

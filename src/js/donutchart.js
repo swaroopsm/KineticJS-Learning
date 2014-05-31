@@ -10,15 +10,9 @@ var DonutChart = function(_config) {
   self.draw = function() {
     center = self.getCenter();
     innerRadius = calculateInnerRadius();
-    if(self.isSemi()) {
-      self.setTotalAngle(180);
-      self.setStartRotationAngle(180);
-    } 
     for(var i=0; i<config.values.length; i++) {
       self.addShape(drawArc(i));
     }
-
-    self.render();
   };
 
   var drawArc = function(index) {
