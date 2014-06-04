@@ -20,9 +20,11 @@ var PieChart = function(_config) {
       radius: self.getRadius(),
       angle: self.calculateAngle(index),
       fill: self.getColor(index),
-      rotation: self.calculateRotation(index)
+      rotation: self.calculateRotation(index),
+      index: index
     });
 
+    self.addToolTip(wedge);
     return wedge;
   };
 

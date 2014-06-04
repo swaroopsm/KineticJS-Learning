@@ -14,7 +14,8 @@ var CircleChart = function(_config) {
       shapes = [],
       centerX = 0,
       centerY = 0,
-      HEIGHT_ADJUST_FACTOR = 10;
+      HEIGHT_ADJUST_FACTOR = 10,
+      tooltip = null;
 
   var init = function() {
     surface = new Surface(config.surface);
@@ -23,6 +24,7 @@ var CircleChart = function(_config) {
     centerY = surface.height() / 2;
     total = getTotal();
   };
+
 
   self.setRadius = function(_radius) {
     radius = _radius;
@@ -89,16 +91,31 @@ var CircleChart = function(_config) {
 
   self.render = function() {
     var layer = surface.createLayer();
+
+    tooltip = new ToolTip();
+
     if(self.isSemi()) {
       self.setTotalAngle(180);
       self.setStartRotationAngle(180);
     } 
+
     self.draw();
 
     for(var i=0; i<shapes.length; i++) {
       layer.add(shapes[i]);
     }
+
     surface.stage.add(layer);
+  };
+
+  self.addToolTip = function(shape) {
+    shape.on('mousemove', function(e) {
+      tooltip.show(e.clientX, e.clientY, labels[shape.index]);
+    });
+
+    shape.on('mouseout', function() {
+      tooltip.hide();
+    });
   };
 
   var getTotal = function() {

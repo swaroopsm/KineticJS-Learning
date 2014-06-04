@@ -1,60 +1,36 @@
-var ToolTip = function() {
+var ToolTip = function(_config) {
 
   var self = this,
-      layer = new Kinetic.Layer();
+      config = _config,
+      $tooltip = null;
 
-  var tooltip = new Kinetic.Label({
-      x: 0,
-      y: 0,
-      visible: false,
-      opacity: 1
+  var init = function() {
+    $tooltip = $("<div/>", {
+      class: 'tooltip'
     });
-
-  tooltip.add(new Kinetic.Tag({
-    fill: 'black',
-    pointerDirection: 'left',
-    pointerWidth: 10,
-    pointerHeight: 10,
-    lineJoin: 'round',
-    shadowColor: 'black',
-    shadowBlur: 0,
-    shadowOffset: {x:10,y:20},
-    shadowOpacity: 0
-  }));
-
-  tooltip.add(new Kinetic.Text({
-    text: '',
-    fontFamily: 'serif',
-    fontSize: 14,
-    padding: 5,
-    fill: 'white'
-  }));
-
-  layer.add(tooltip);
-
-  self.getToolTip = function() {
-    return tooltip;
-  };
-
-  self.getLayer = function() {
-    return layer;
   };
 
   self.show = function(x, y, label) {
-    tooltip.getText().setText(label);
-    tooltip.setPosition({
-      x: x,
-      y: y
+    $tooltip.css({
+      left: x + document.body.scrollLeft + 10,
+      top: y + document.body.scrollTop + 10
     });
-    tooltip.setVisible(true);
-    layer.moveToTop();
-    layer.draw();
+
+    $('body').append($tooltip);
+    $tooltip.html(label);
+    $tooltip.show();
   };
 
   self.hide = function() {
-    tooltip.setVisible(false);
-    layer.draw();
+    $tooltip.hide();
+    destroy();
   };
+
+  var destroy = function() {
+   $tooltip.remove();
+  };
+
+  init();
 
   return self;
 

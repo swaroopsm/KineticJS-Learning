@@ -23,8 +23,11 @@ var DonutChart = function(_config) {
       rotationDeg: self.calculateRotation(index),
       x: center.x,
       y: center.y,
-      fill: self.getColor(index)
+      fill: self.getColor(index),
+      index: index
     });
+
+    self.addToolTip(arcShape);
 
     return arcShape;
   };

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>KineticJS Learning</title>
+  <link rel="stylesheet" href="/KineticJS-Learning/src/css/style.css">
   <style>
     .container {
       display: inline-block;
@@ -15,7 +16,9 @@
   <div id="p1" class="container"></div>
   <div id="p2" class="container"></div>
 </body>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="/KineticJS-Learning/src/js/surface.js"></script>
+<script src="/KineticJS-Learning/src/js/tooltip.js"></script>
 <script src="/KineticJS-Learning/src/js/circlechart.js"></script>
 <script src="/KineticJS-Learning/src/js/piechart.js"></script>
 <script>
@@ -31,7 +34,6 @@
       luminosity: 'light'
     }),
     surface: {
-      id: 1,
       container: 'p1',
       width: 400,
       height: 300

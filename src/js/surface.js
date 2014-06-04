@@ -10,8 +10,6 @@ function Surface(_config) {
       components = null,
       stage = null;
 
-  self.id = config.id;
-
   self.stage = stage;
 
   self.width = function() {
