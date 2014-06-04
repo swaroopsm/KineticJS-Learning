@@ -2,6 +2,7 @@ var ToolTip = function(_config) {
 
   var self = this,
       config = _config,
+      $body = $('body'),
       $tooltip = null;
 
   var init = function() {
@@ -16,7 +17,7 @@ var ToolTip = function(_config) {
       top: y + document.body.scrollTop + 10
     });
 
-    $('body').append($tooltip);
+    $body.append($tooltip);
     $tooltip.html(label);
     $tooltip.show();
   };

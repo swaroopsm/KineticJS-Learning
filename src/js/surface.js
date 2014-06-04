@@ -32,6 +32,10 @@ function Surface(_config) {
   };
 
   var init = function() {
+    $('body').append($('<div/>', {
+      id: container,
+      class: 'shape'
+    }));
     self.stage = createStage();
   };
 
