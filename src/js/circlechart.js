@@ -122,7 +122,7 @@ var CircleChart = function(_config) {
 
   self.addToolTip = function(shape) {
     shape.on('mousemove', function(e) {
-      tooltip.show(e.clientX, e.clientY, labels[shape.index]);
+      tooltip.show(e.clientX, e.clientY, getToolTipText(shape.index));
     });
 
     shape.on('mouseout', function() {
@@ -142,6 +142,14 @@ var CircleChart = function(_config) {
   var calculateRadius = function() {
     var min = Math.min(surface.width(), surface.height());
     return min / 2 - HEIGHT_ADJUST_FACTOR;
+  };
+
+  var calculateValuePercent = function(index) {
+    return values[index] / getTotal() * 100;
+  };
+
+  var getToolTipText = function(index) {
+    return labels[index] + ' - ' + parseFloat(calculateValuePercent(index)).toFixed(2) + '%';
   };
  
   init();
