@@ -10,6 +10,9 @@ var Gauge = function(_config) {
     text: config.value,
     size: 42
   };
+
+  DonutChart.call(this, _config);
+
       
   self.draw = function() {
     for(var i=0; i<config.values.length; i++) {
@@ -17,11 +20,8 @@ var Gauge = function(_config) {
       self.addShape(arc);
     }
 
-    self.addCaption();
+    self.addShape(self.drawCaption());
   };
   
-  // Temporary;
-  DonutChart.call(this, _config);
-
   return self;
 };
