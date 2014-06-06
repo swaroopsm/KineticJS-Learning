@@ -5,11 +5,10 @@ var DonutChart = function(_config) {
   var self = this,
       config = _config,
       caption = config.caption ? config.caption : { text: '', size: 16 },
-      center,
+      center = self.getCenter(),
       innerRadius;
 
   self.draw = function() {
-    center = self.getCenter();
     innerRadius = calculateInnerRadius();
     for(var i=0; i<config.values.length; i++) {
       self.addShape(drawArc(i));
@@ -20,9 +19,21 @@ var DonutChart = function(_config) {
     }
   };
 
+  self.calculteInnerRadius = function() {
+    return calculateInnerRadius();
+  };
+
+  self.drawArc = function(index) {
+    return drawArc(index);
+  };
+
+  self.drawCaption = function() {
+    return drawCaption();
+  };
+
   var drawArc = function(index) {
     var arcShape = new Kinetic.Arc({
-      innerRadius: center.y - innerRadius,
+      innerRadius: center.y - calculateInnerRadius(),
       outerRadius: self.getRadius(),
       angle: self.calculateAngle(index),
       rotationDeg: self.calculateRotation(index),

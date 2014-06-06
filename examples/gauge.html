@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KineticJS Learning</title>
+  <link rel="stylesheet" href="/KineticJS-Learning/src/css/style.css">
+  <script src="/KineticJS-Learning/src/js/vendor/kinetic.min.js"></script>
+  <script src="/KineticJS-Learning/src/js/vendor/randomColor.js"></script>
+</head>
+<body>
+
+</body>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/KineticJS-Learning/src/js/surface.js"></script>
+<script src="/KineticJS-Learning/src/js/tooltip.js"></script>
+<script src="/KineticJS-Learning/src/js/circlechart.js"></script>
+<script src="/KineticJS-Learning/src/js/donutchart.js"></script>
+<script src="/KineticJS-Learning/src/js/gauge.js"></script>
+<script>
+  var gauge = new Gauge({
+    min: {
+      value: 0,
+      color: randomColor({
+        hue: 'yellow',
+        luminosity: 'dark'
+      })
+    },
+    max: {
+      value: 200,
+      color: '#CCC'
+    },
+    value: Math.floor((Math.random() * 200) + 1),
+    surface: {
+      container: 'g1',
+      width: 400,
+      height: 300
+    }
+  });
+
+  var gauge2 = new Gauge({
+    min: {
+      value: 0,
+      color: randomColor({
+        hue: 'orange',
+        luminosity: 'dark'
+      })
+    },
+    max: {
+      value: 400,
+      color: '#CCC'
+    },
+    value: Math.floor((Math.random() * 400) + 1),
+    surface: {
+      container: 'g2',
+      width: 400,
+      height: 300
+    }
+  });
+
+  var gauge3 = new Gauge({
+    min: {
+      value: 0,
+      color: randomColor({
+        hue: 'blue',
+        luminosity: 'dark'
+      })
+    },
+    max: {
+      value: 10000,
+      color: '#CCC'
+    },
+    value: Math.floor((Math.random() * 10000) + 1),
+    surface: {
+      container: 'g3',
+      width: 400,
+      height: 300
+    }
+  });
+  gauge.render();
+  gauge2.render();
+  gauge3.render();
+</script>
+</html>
