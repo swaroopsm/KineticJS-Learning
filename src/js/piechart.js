@@ -6,6 +6,8 @@ var PieChart = function(_config) {
       config = _config,
       center;
 
+  self.type = 'pie';
+
   self.draw = function() {
     center = self.getCenter();
     for(var i=0; i<config.values.length; i++) {

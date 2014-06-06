@@ -54,8 +54,20 @@ var CircleChart = function(_config) {
     return (config.type === 'semi');
   };
 
+  self.isDonut = function() {
+    return self.type === 'donut';
+  };
+
+  self.isPie = function() {
+    return self.type === 'pie';
+  };
+
   self.setTotalAngle = function(angle) {
     totalAngle = angle;
+  };
+
+  self.getHeightAdjustFactor = function() {
+    return HEIGHT_ADJUST_FACTOR;
   };
 
   self.setStartRotationAngle = function(angle) {

@@ -4,6 +4,7 @@ var DonutChart = function(_config) {
 
   var self = this,
       config = _config,
+      caption = config.caption ? config.caption : { text: '', size: 16 },
       center,
       innerRadius;
 
@@ -12,6 +13,10 @@ var DonutChart = function(_config) {
     innerRadius = calculateInnerRadius();
     for(var i=0; i<config.values.length; i++) {
       self.addShape(drawArc(i));
+    }
+
+    if(self.isSemi()) {
+      self.addShape(drawCaption());
     }
   };
 
@@ -30,6 +35,21 @@ var DonutChart = function(_config) {
     self.addToolTip(arcShape);
 
     return arcShape;
+  };
+
+  var drawCaption = function() {
+    var captionText = new Kinetic.Text({
+      x: center.x - innerRadius + self.getHeightAdjustFactor(),
+      y: center.y - innerRadius / 2,
+      text: caption.text ? caption.text : '',
+      fontSize: caption.size ? caption.size : 16,
+      fill: '#000',
+      align: 'center',
+      width: self.getRadius() - self.getHeightAdjustFactor(),
+      fontFamily: 'sans-serif'
+    });
+
+    return captionText;
   };
 
   var calculateInnerRadius = function() {
