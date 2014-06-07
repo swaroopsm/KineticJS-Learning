@@ -13,8 +13,8 @@ var ToolTip = function(_config) {
 
   self.show = function(x, y, label) {
     $tooltip.css({
-      left: x + document.body.scrollLeft + 10,
-      top: y + document.body.scrollTop + 10
+      left: x + document.body.scrollLeft - $tooltip.width() / 2,
+      top: y + document.body.scrollTop - 40
     });
 
     $body.append($tooltip);
@@ -23,8 +23,10 @@ var ToolTip = function(_config) {
   };
 
   self.hide = function() {
-    $tooltip.hide();
-    destroy();
+    setTimeout(function() {
+      $tooltip.hide();
+      destroy();
+    }, 600)
   };
 
   var destroy = function() {
