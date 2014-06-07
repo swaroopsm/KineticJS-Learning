@@ -120,12 +120,12 @@ var CircleChart = function(_config) {
     surface.stage.add(layer);
   };
 
-  self.addToolTip = function(shape) {
-    shape.on('mousemove', function(e) {
-      tooltip.show(e.clientX, e.clientY, getToolTipText(shape.index));
+  self.addToolTip = function(pattern) {
+    pattern.shape.on('mousemove', function(e) {
+      tooltip.show(e.clientX, e.clientY, getToolTipText(pattern.index));
     });
 
-    shape.on('mouseout', function() {
+    pattern.shape.on('mouseout', function() {
       tooltip.hide();
     });
   };

@@ -14,7 +14,10 @@ var DonutChart = function(_config) {
     for(var i=0; i<config.values.length; i++) {
       arcShape = drawArc(i);
       self.addShape(arcShape);
-      self.addToolTip(arcShape);
+      self.addToolTip({
+        shape: arcShape,
+        index: i
+      });
 
     }
 

@@ -4,15 +4,36 @@ var PieChart = function(_config) {
 
   var self = this,
       config = _config,
-      center;
+      center,
+      wedge;
 
   self.type = 'pie';
 
   self.draw = function() {
     center = self.getCenter();
     for(var i=0; i<config.values.length; i++) {
-      self.addShape(drawWedge(i));
+      wedge = drawWedge(i);
+      self.addShape(wedge);
+      self.addToolTip({
+        shape: wedge,
+        index: i
+      });
+      self.addShape(drawLabel(i));
     }
+
+    for(var i=0; i<config.values.length; i++) {
+    }
+  };
+
+  var drawLabel = function(index) {
+    var label = new Kinetic.Text({
+      x: (center.x) + self.getRadius() * Math.cos(calculateLabelAngle(index) * Math.PI / 180),
+      y: (center.y) + self.getRadius() * Math.sin(calculateLabelAngle(index) * Math.PI / 180),
+      fill: '#111',
+      text: config.labels[index]
+    });
+
+    return label;
   };
 
   var drawWedge = function(index) {
@@ -26,8 +47,15 @@ var PieChart = function(_config) {
       index: index
     });
 
-    self.addToolTip(wedge);
     return wedge;
+  };
+
+  var calculateLabelAngle = function(index) {
+    if(index === 0){
+      return self.calculateAngle(index) / 2;
+    }
+
+    return self.calculateAngle(index) / 2 + self.calculateRotation(index);
   };
 
   return self;
